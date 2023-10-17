@@ -35,8 +35,8 @@ class HomeScreen extends StatelessWidget {
             return RefreshIndicator(
                 child: ListView.builder(
                   itemBuilder: (context, index) =>
-                      ListTile(data: controller.posts.value[index]),
-                  itemCount: controller.posts.value.length,
+                      ListTile(data: controller.posts[index]),
+                  itemCount: controller.posts.length,
                 ),
                 onRefresh: () async {
                   controller.getAuthors();
