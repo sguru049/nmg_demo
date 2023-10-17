@@ -32,11 +32,15 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Obx(() {
-            return ListView.builder(
-              itemBuilder: (context, index) =>
-                  ListTile(data: controller.posts[index]),
-              itemCount: controller.posts.length,
-            );
+            return RefreshIndicator(
+                child: ListView.builder(
+                  itemBuilder: (context, index) =>
+                      ListTile(data: controller.posts.value[index]),
+                  itemCount: controller.posts.value.length,
+                ),
+                onRefresh: () async {
+                  controller.getAuthors();
+                });
           }),
         ),
       ),
